@@ -7,51 +7,44 @@ import java.io.Console;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Walks {
-    public String walk_name;
-    public String walk_location;
-    public String walk_difficulty;
+    public static String walk_name;
+    public static String walk_location;
+    public static String walk_difficulty;
     public int walk_distance;
     public int walk_length;
     public static Statement stmt;
 
 
     public Walks(String name, String location, String difficulty, int distance, int length) {
-        this.walk_name = name;
-        this.walk_location = location;
-        this.walk_difficulty = difficulty;
-        this.walk_distance = distance;
-        this.walk_length = length;
-    }
-
-
-
-    public static ArrayList<Walks> getWalks() {
-        ArrayList<Walks> walks = new ArrayList<>();
         String sql;
-
-
         sql = "SELECT * FROM Walks";
         try {
             ResultSet rst = stmt.executeQuery(sql);
-            walks.add(new Walks(rst.getString("walk_name"), rst.getString("walk_location"), rst.getString("walk_difficulty"),1,1));
-            for(ResultSet i = (ResultSet) walks.iterator(); i.next(); ) {
-                walks.add(rst);
-                //walks.add(new Walks(rst.getString("walk_name"), rst.getString("walk_location"), rst.getString("walk_difficulty"),1,1));
-                //String item = i.next();
-                //System.out.println(item);
+            while (rst.next()){
+                walk_name = rst.getString("walk_name");
+                walk_location = rst.getString("walk_location");
+                walk_difficulty = rst.getString("walk-difficulty");
+                //num4 = rst.getString(4);
+                //num5 = rst.getString(5);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-        walks.add(new Walks("yy44","wfwfwfw","dwegweg", 1,2));
-        return walks;
+
     }
 
+
+
+    public static ArrayList<Walks> getWalks(){
+        ArrayList<Walks> walks = new ArrayList<>();
+                walks.add(new Walks(walk_name,walk_location,walk_difficulty,1,1));
+        return walks;
+    }
 
 
 

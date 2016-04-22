@@ -8,6 +8,7 @@ import android.widget.TextView;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         populateWalksList();
+
 
 
         walk_location = (ListView) findViewById(R.id.info);
@@ -59,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void populateWalksList() {
-        ArrayList<Walks> arrayOfwalks1 = Walks.getWalks();
+        ArrayList<Walks> walks = Walks.getWalks();
         // Create the adapter to convert the array to views
-        CustomWalkAdapter adapter = new CustomWalkAdapter(this, arrayOfwalks1);
+        CustomWalkAdapter adapter = new CustomWalkAdapter(this, walks);
         // Attach the adapter to a ListView
         ListView listView = (ListView) findViewById(R.id.lvWalks);
         listView.setAdapter(adapter);

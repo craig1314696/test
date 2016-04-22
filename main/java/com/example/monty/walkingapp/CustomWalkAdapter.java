@@ -29,9 +29,9 @@ public class CustomWalkAdapter extends ArrayAdapter<Walks> {
         TextView wDist = (TextView) convertView.findViewById(R.id.item_walk_distance);
         TextView wLength = (TextView) convertView.findViewById(R.id.item_walk_length);
         // Populate the data into the template view using the data object
-        wName.setText(walk.walk_name);
-        wLocation.setText(walk.walk_location);
-        wDiff.setText(walk.walk_difficulty);
+        wName.setText(Walks.walk_name);
+        wLocation.setText(Walks.walk_location);
+        wDiff.setText(Walks.walk_difficulty);
         //wDist.setText(walk.walk_distance);
         //wLength.setText(walk.walk_length);
         // Return the completed view to render on screen
